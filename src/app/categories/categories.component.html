@@ -1,0 +1,13 @@
+<div class="py-5">
+    <div class="row py-5">
+        <div class="col-md-4">
+            <img class="w-100" [src]="category.image" alt="">
+        </div>
+        <div class="col-md-8">
+            <h2 class="fw-bolder text-center">{{category.name}}</h2>
+            <ul>
+                <li class="fs-5" *ngFor="let subcateg of subcategories">{{subcateg.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

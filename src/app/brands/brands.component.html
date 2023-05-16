@@ -1,0 +1,8 @@
+<div class="py-5">
+    <div class="row py-5">
+        <div *ngFor="let brand of brands" class="col-md-3 mb-3">
+            <img [src]="brand.image" alt="">
+            <h2 class="h5 text-white bg-black text-center">{{brand.name}}</h2>
+        </div>
+    </div>
+</div>

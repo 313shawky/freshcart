@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-main-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/images/freshcart-logo.svg" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li *ngIf="isLogin" class="nav-item">
+            <a class="nav-link" routerLink="home">Home</a>
+          </li>
+          <li *ngIf="isLogin" class="nav-item">
+            <a class="nav-link" routerLink="products">Products</a>
+          </li>
+          <li *ngIf="isLogin" class="nav-item">
+            <a class="nav-link" routerLink="brands">Brands</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item d-flex align-items-center gap-3 mx-2">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-tiktok"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-youtube"></i>
+              </li>
+            <li *ngIf="!isLogin" class="nav-item">
+              <a class="nav-link" routerLink="login">Login</a>
+            </li>
+            <li *ngIf="!isLogin" class="nav-item">
+              <a class="nav-link" routerLink="register">Register</a>
+            </li>
+            <li *ngIf="isLogin" class="nav-item">
+              <a class="nav-link p-2 position-relative" routerLink="cart">
+                <i class="fas fa-cart-shopping text-main fa-lg"></i>
+                <span class="badge bg-main text-white position-absolute top-0 end-0">{{cartNumbers}}</span>
+              </a>
+            </li>
+            <li *ngIf="isLogin" class="nav-item cursor-pointer">
+              <span (click)="signout()" class="nav-link">Signout</span>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,68 @@
+<div class="w-75 mx-auto py-5">
+    <div class="py-5">
+        <h4 class="mb-3 fw-bold">Register Now:</h4>
+        <div *ngIf="apiError" class="alert alert-danger m-0">
+            <p class="m-0">{{apiError}}</p>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="handleRegister(registerForm)" class="mt-3">
+
+            <label for="name" class="mb-1">Name:</label>
+            <input formControlName="name" type="text" id="name" class="form-control mb-2">
+            <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched"
+                class="alert alert-danger">
+                <p *ngIf="registerForm.get('name')?.getError('required') | json" class="m-0">First Name is required
+                </p>
+                <p *ngIf="registerForm.get('name')?.getError('minlength') | json" class="m-0">First Name min.
+                    length is 3</p>
+                <p *ngIf="registerForm.get('name')?.getError('maxlength') | json" class="m-0">First Name max.
+                    length is 15</p>
+            </div>
+
+            <label for="email" class="mb-1">Email:</label>
+            <input formControlName="email" type="email" id="email" class="form-control mb-2">
+            <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched"
+                class="alert alert-danger">
+                <p *ngIf="registerForm.get('email')?.getError('required') | json" class="m-0">Email is required</p>
+                <p *ngIf="registerForm.get('email')?.getError('email') | json" class="m-0">Email is invalid</p>
+            </div>
+
+            <label for="password" class="mb-1">Password:</label>
+            <input formControlName="password" type="password" id="password" class="form-control mb-2">
+            <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
+                class="alert alert-danger">
+                <p *ngIf="registerForm.get('password')?.getError('required') | json" class="m-0">Password is required
+                </p>
+                <p *ngIf="registerForm.get('password')?.getError('pattern') | json" class="m-0">Password min. length is
+                    5 characters and must start with capital letter</p>
+            </div>
+
+            <label for="rePassword" class="mb-1">Repassword:</label>
+            <input formControlName="rePassword" type="password" id="rePassword" class="form-control mb-2">
+            <div *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched"
+                class="alert alert-danger">
+                <p *ngIf="registerForm.get('rePassword')?.getError('required') | json" class="m-0">Password is required
+                </p>
+                <p *ngIf="registerForm.get('rePassword')?.getError('pattern') | json" class="m-0">Password min. length
+                    is
+                    5 characters and must start with capital letter</p>
+                <p *ngIf="registerForm.get('rePassword')?.getError('passwordmatch') | json" class="m-0">Passwords didn't match!
+                </p>
+            </div>
+
+            <label for="phone" class="mb-1">Phone:</label>
+            <input formControlName="phone" type="tel" class="form-control mb-2" id="phone">
+            <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched"
+                class="alert alert-danger">
+                <p *ngIf="registerForm.get('phone')?.getError('required')" class="m-0">Phone is required</p>
+                <p *ngIf="registerForm.get('phone')?.getError('pattern')" class="m-0">Phone must be an Egyptian number
+                </p>
+            </div>
+
+            <button [disabled]="registerForm.invalid" type="submit"
+                class="btn bg-main border-0 text-white d-block ms-auto mt-3">
+                <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+                <span *ngIf="!isLoading">Register</span>
+            </button>
+        </form>
+    </div>
+</div>
