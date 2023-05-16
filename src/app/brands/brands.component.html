@@ -1,7 +1,8 @@
 <div class="py-5">
+    <ngx-spinner bdColor = "#fff" size = "large" color = "#0aad0a" type = "ball-spin-clockwise-fade" [fullScreen] = "false"></ngx-spinner>
     <div class="row py-5">
-        <div *ngFor="let brand of brands" class="col-md-3 mb-3">
-            <img [src]="brand.image" alt="">
+        <div *ngFor="let brand of brands" class="col-md-3 mb-3 cursor-pointer">
+            <img [src]="brand.image" [alt]="brand.name" [title]="brand.name">
             <h2 class="h5 text-white bg-black text-center">{{brand.name}}</h2>
         </div>
     </div>

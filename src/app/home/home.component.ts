@@ -4,6 +4,8 @@ import { Product } from '../product';
 import { Category } from '../category';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from '../cart.service';
+import { ToastrService } from 'ngx-toastr'
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -12,14 +14,21 @@ import { CartService } from '../cart.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _ProductsService: ProductsService, private _CartService:CartService) { }
+  constructor(private _ProductsService: ProductsService, 
+    private _CartService:CartService, 
+    private _ToastrService:ToastrService,
+    private _NgxSpinnerService:NgxSpinnerService) { }
 
   products: Product[] = [];
   categories: Category[] = [];
 
   ngOnInit(): void {
+    this._NgxSpinnerService.show();
     this._ProductsService.getProducts().subscribe({
-      next: (response) => this.products = response.data
+      next: (response) => {
+        this._NgxSpinnerService.hide();
+        this.products = response.data
+      }
     });
 
     this._ProductsService.getCategories().subscribe({
@@ -30,11 +39,10 @@ export class HomeComponent implements OnInit {
   addToCart(productId:string) {
     this._CartService.addToCart(productId).subscribe({
       next: (response) => {
-        this._CartService.numberOfCartItems.next(response.numOfCartItems)
+        this._CartService.numberOfCartItems.next(response.numOfCartItems);
+        this.showSuccess();
       },
       error: (err) => {
-        console.log(err);
-        
       }
     })
   }
@@ -53,6 +61,10 @@ export class HomeComponent implements OnInit {
       }
     },
     nav: true
+  }
+
+  showSuccess() {
+    this._ToastrService.success('Item Added Successfully.')
   }
 
 }

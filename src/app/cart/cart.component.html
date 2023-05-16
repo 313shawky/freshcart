@@ -1,5 +1,6 @@
 <div class="py-5">
     <div class="p-4 bg-main-light my-4">
+        <ngx-spinner bdColor = "#fff" size = "large" color = "#0aad0a" type = "ball-spin-clockwise-fade" [fullScreen] = "false"></ngx-spinner>
         <h3>Shop Cart</h3>
         <h6 class="text-main">Total Price: {{cartDetails?.totalCartPrice}} EGP</h6>
         <div *ngFor="let product of cartDetails?.products" class="row align-items-center border-bottom py-3">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CartService } from '../cart.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-checkout',
@@ -9,14 +10,17 @@ import { CartService } from '../cart.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private _CartService: CartService) { }
+  constructor(private _CartService: CartService,
+    private _NgxSpinnerService: NgxSpinnerService) { }
 
-  cartId:string = '';
+  cartId: string = '';
 
   ngOnInit(): void {
+    this._NgxSpinnerService.show();
     this._CartService.getLoggedUserCart().subscribe({
       next: (res) => {
-        this.cartId = res.data._id
+        this._NgxSpinnerService.hide();
+        this.cartId = res.data._id;
       }
     })
   }

@@ -22,6 +22,9 @@ import { MainsliderComponent } from './mainslider/mainslider.component';
 import { SearchPipe } from './search.pipe';
 import { ToastrModule } from "ngx-toastr";
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +42,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ProductdetailsComponent,
     MainsliderComponent,
     SearchPipe,
-    CheckoutComponent
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,10 +52,12 @@ import { CheckoutComponent } from './checkout/checkout.component';
     BrowserAnimationsModule,
     CarouselModule,
     FormsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     })
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

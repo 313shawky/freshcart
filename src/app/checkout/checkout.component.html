@@ -1,5 +1,6 @@
 <div class="w-50 mx-auto py-5">
     <div class="py-5">
+        <ngx-spinner bdColor = "#f0f3f2" size = "large" color = "#0aad0a" type = "ball-spin-clockwise-fade" [fullScreen] = "false"></ngx-spinner>
         <form [formGroup]="shippingAddress" (ngSubmit)="handleSubmit(shippingAddress)">
             <label for="details">Details:</label>
             <input type="text" formControlName="details" id="details" class="form-control mb-2">

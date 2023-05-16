@@ -20,12 +20,12 @@
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item d-flex align-items-center gap-3 mx-2">
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-tiktok"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-linkedin-in"></i>
-                <i class="fab fa-youtube"></i>
+                <i class="fab fa-instagram cursor-pointer" title="Instagram"></i>
+                <i class="fab fa-facebook cursor-pointer" title="Facebook"></i>
+                <i class="fab fa-tiktok cursor-pointer" title="Tiktok"></i>
+                <i class="fab fa-twitter cursor-pointer" title="Twitter"></i>
+                <i class="fab fa-linkedin-in cursor-pointer" title="LinkedIn"></i>
+                <i class="fab fa-youtube cursor-pointer" title="Youtube"></i>
               </li>
             <li *ngIf="!isLogin" class="nav-item">
               <a class="nav-link" routerLink="login">Login</a>
@@ -33,7 +33,7 @@
             <li *ngIf="!isLogin" class="nav-item">
               <a class="nav-link" routerLink="register">Register</a>
             </li>
-            <li *ngIf="isLogin" class="nav-item">
+            <li *ngIf="isLogin" class="nav-item" title="Cart">
               <a class="nav-link p-2 position-relative" routerLink="cart">
                 <i class="fas fa-cart-shopping text-main fa-lg"></i>
                 <span class="badge bg-main text-white position-absolute top-0 end-0">{{cartNumbers}}</span>
