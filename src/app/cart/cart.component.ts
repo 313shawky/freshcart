@@ -23,6 +23,9 @@ export class CartComponent implements OnInit {
       next: (response) => {
         this._NgxSpinnerService.hide();
         this.cartDetails = response.data;
+      },
+      error: (err) => {
+        this._NgxSpinnerService.hide();
       }
     })
   }
