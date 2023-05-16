@@ -4,6 +4,7 @@ import { Category } from '../category';
 import { Subcategory } from '../subcategory';
 import { ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -13,7 +14,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor(private _ProductsService:ProductsService, private _ActivatedRoute:ActivatedRoute) { }
+  constructor(private _ProductsService:ProductsService, 
+    private _ActivatedRoute:ActivatedRoute, 
+    private _NgxSpinnerService:NgxSpinnerService) { }
 
   categories:Category[] = [];
   categoryId: string | null = '';
@@ -25,19 +28,15 @@ export class CategoriesComponent implements OnInit {
   subcategories:Subcategory[] = [];
 
   ngOnInit(): void {
+    this._NgxSpinnerService.show();
     this._ActivatedRoute.paramMap.subscribe((params) => {
       this.categoryId = params.get('id')
     })
 
-    this._ProductsService.getCategories().subscribe({
-      next: (response) => {
-        this.categories = response.data
-      }
-    })
-
     this._ProductsService.getCategory(this.categoryId).subscribe({
       next: (response) => {
-        this.category = response.data
+        this._NgxSpinnerService.hide();
+        this.category = response.data;
       }
     })
 

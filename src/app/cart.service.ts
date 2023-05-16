@@ -51,7 +51,7 @@ export class CartService {
   }
 
   payOnline(shippingAddress: Shippingaddress, cartId: string): Observable<any> {
-    return this._HttpClient.post(`${this.baseUrl}orders/checkout-session/${cartId}?url=https://313shawky.github.io/freshcart/`,
+    return this._HttpClient.post(`${this.baseUrl}orders/checkout-session/${cartId}?url=https://313shawky.github.io/freshcart`,
       { shippingAddress: shippingAddress },
       { headers: this.headers })
   }
